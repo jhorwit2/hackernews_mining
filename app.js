@@ -24,7 +24,7 @@ var processThread = function (id, callback) {
 };
 
 var error = function (error) {
-    console.log('The read failed: ' + errorObject.code);
+    console.log('The read failed: ' + error.code);
 };
 
 var finished = function (error) {
