@@ -1,32 +1,35 @@
 'use strict';
 
 var Firebase = require('firebase'),
-    async = require('async');
+    async = require('async'),
+    fs = require('fs');
 
 // Get a reference to our posts
 var topRef = new Firebase("https://hacker-news.firebaseio.com/v0/topstories/"),
-    itemRef = new Firebase("https://hacker-news.firebaseio.com/v0/item/");
+    threadRef = new Firebase("https://hacker-news.firebaseio.com/v0/item/"),
+    file = fs.createWriteStream('output.txt');
 
 // // Attach an asynchronous callback to read the data at our posts reference
 topRef.on('value', function (snapshot) {
-    async.each(snapshot.val(), function (id, callback) {
-
-        itemRef.child(id).once('value', function (snapshot) {
-            console.log(snapshot.val().title);
-            callback();
-        });
-    }, finished);
-
+    var top100 = snapshot.val();
+    async.each(top100, processThread, finished);
 }, error);
 
+var processThread = function (id, callback) {
+    threadRef.child(id).once('value', function (snapshot) {
+        var title = snapshot.val().title;
+        file.write(title + '\n');
+        return callback();
+    });
+};
 
 var error = function (error) {
     console.log('The read failed: ' + errorObject.code);
 };
 
 var finished = function (error) {
-    if(itemRef) {
-        itemRef.off();
-    }
+    // Clear the callbacks for threadRef
+    threadRef.off();
+
     console.log(error || 'success');
 };
