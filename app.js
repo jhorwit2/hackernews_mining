@@ -31,5 +31,7 @@ var finished = function (error) {
     // Clear the callbacks for threadRef
     threadRef.off();
 
-    console.log(error);
+    if (error) {
+        console.log(error);
+    }
 };
