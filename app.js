@@ -2,7 +2,16 @@
 
 var Firebase = require('firebase'),
     async = require('async'),
-    fs = require('fs');
+    fs = require('fs'),
+    winston = require('winston');
+
+
+var logger = new (winston.Logger)({
+    transports: [
+      new (winston.transports.Console)({'timestamp':true})
+    ]
+});
+
 
 // Get a reference to our posts
 var topRef = new Firebase("https://hacker-news.firebaseio.com/v0/topstories/"),
@@ -24,7 +33,7 @@ var processThread = function (id, callback) {
 };
 
 var error = function (error) {
-    console.log('The read failed: ' + error.code);
+    logger.error('The read failed: ' + error.code)
 };
 
 var finished = function (error) {
@@ -32,6 +41,8 @@ var finished = function (error) {
     threadRef.off();
 
     if (error) {
-        console.log(error);
+        logger.error('Error:', error);
+    } else {
+        logger.info('Successfully updated output.txt');
     }
 };
