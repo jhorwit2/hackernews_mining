@@ -11,6 +11,8 @@
   "dependencies": {
     "async": "^0.9.0",
     "firebase": "^1.1.0",
+    "pg": "^3.5.0",
+    "sequelize": "^2.0.0-rc1",
     "winston": "^0.8.1"
   }
 }

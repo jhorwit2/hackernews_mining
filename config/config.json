@@ -1,3 +1,14 @@
 {
-    
+    "database": {
+        "database": "<database>",
+        "username": "<username>",
+        "password": "<password>",
+        "options": {
+            "dialect": "postgres",
+            "protocol": "postgres",
+            "host": "<host>",
+            "port": 5432,
+            "native": true //Gives SSL
+        }
+    }
 }
