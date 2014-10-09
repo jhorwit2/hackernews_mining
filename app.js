@@ -5,18 +5,16 @@ var Firebase = require('firebase'),
     fs = require('fs'),
     winston = require('winston');
 
-
-var logger = new (winston.Logger)({
-    transports: [
-      new (winston.transports.Console)({'timestamp':true})
-    ]
-});
-
-
 // Get a reference to our posts
 var topRef = new Firebase("https://hacker-news.firebaseio.com/v0/topstories/"),
     threadRef = new Firebase("https://hacker-news.firebaseio.com/v0/item/"),
-    file = fs.createWriteStream('output.txt');
+    file = fs.createWriteStream('output.txt'),
+    logger = new (winston.Logger)({
+        transports: [
+          new (winston.transports.Console)({'timestamp':true}),
+          new (winston.transports.File) ({filename: 'audit.log'})
+        ]
+    });
 
 // // Attach an asynchronous callback to read the data at our posts reference
 topRef.on('value', function (snapshot) {
