@@ -1,6 +1,6 @@
 'use strict';
 
 // Start the application
-var app = require('./controller/threads');
+var app = require('./controllers/threads');
 
 app.start();

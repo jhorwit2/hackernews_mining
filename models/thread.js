@@ -1,6 +1,6 @@
 'use strict';
 
-var threadRef = require('../config/firebase').thread;
+var threadRef = require('../lib/firebase').thread;
 
 // // Attach an asynchronous callback to read the data at our posts reference
 module.exports.create = function (id, callback) {

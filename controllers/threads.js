@@ -1,9 +1,9 @@
 'use strict';
 
-var topRef = require('../config/firebase').top,
+var topRef = require('../lib/firebase').top,
     async = require('async'),
-    logger = require('../config/logger'),
-    thread = require('../model/thread');
+    logger = require('../lib/logger'),
+    thread = require('../models/thread');
 
 module.exports.start = (function () {
     topRef.on('value', function (snapshot) {
