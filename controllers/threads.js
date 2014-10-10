@@ -5,7 +5,7 @@ var firebase = require('../lib/firebase'),
     threadRef = firebase.thread,
     async = require('async'),
     logger = require('../lib/logger'),
-    thread = require('../models/thread');
+    Thread = require('../models/thread');
 
 module.exports.start = (function () {
     topRef.on('value', function (snapshot) {
@@ -21,9 +21,7 @@ var getThread = function (id, callback) {
 
 
         var title = snapshot.val().title;
-        //console.log(title);
-        //file.write(title + '\n');
-        return callback();
+        Thread.create(title, callback);
     });
 };
 
