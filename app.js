@@ -10,7 +10,7 @@ var app = require('./controllers/threads'),
 
 
 (function () {
-    database.setup(config, function (error) {
+    database.config(config, function (error) {
         if (error) {
             logger.error('The app is quiting due to config failures');
             process.kill();
