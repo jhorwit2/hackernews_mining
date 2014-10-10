@@ -7,12 +7,12 @@ var firebase = require('../lib/firebase'),
     logger = require('../lib/logger'),
     Thread = require('../models/thread');
 
-module.exports.start = (function () {
+module.exports.start = function () {
     topRef.on('value', function (snapshot) {
         var top100 = snapshot.val();
         async.each(top100, getThread, finished);
     }, error);
-});
+};
 
 var getThread = function (id, callback) {
     threadRef.child(id).once('value', function (snapshot) {
@@ -26,7 +26,7 @@ var getThread = function (id, callback) {
 };
 
 var error = function (error) {
-    logger.error('The read failed: ' + error.code)
+    logger.error('The read failed: ' + error.code);
 };
 
 var finished = function (error) {
