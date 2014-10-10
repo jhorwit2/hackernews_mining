@@ -1,5 +1,6 @@
 
 ![David DM](https://david-dm.org/jhorwit2/hackernews_mining.png)
+![Travis CI](https://travis-ci.org/jhorwit2/hackernews_mining.svg)
 
 
 hackernews_mining
