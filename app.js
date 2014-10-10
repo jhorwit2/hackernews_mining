@@ -3,17 +3,19 @@
 // Start the application
 var app = require('./controllers/threads'),
     database = require('./lib/database'),
-    logger = require('./lib/logger');
+    thread = require('./models/thread'),
+    logger = require('./lib/logger'),
+    async = require('async'),
+    config = require('./config/config');
 
-var start = function () {
-    database.start(function (error) {
-        if (!error) {
-            //app.start();
-        } else {
+
+(function () {
+    database.setup(config, function (error) {
+        if (error) {
             logger.error('The app is quiting due to config failures');
             process.kill();
+        } else {
+            app.start();
         }
-    });
-};
-
-start();
+    })
+}());
