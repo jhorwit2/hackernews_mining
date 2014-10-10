@@ -1,4 +1,5 @@
 {
+    "modulePath": "./models",
     "database": {
         "database": "<database>",
         "username": "<username>",
