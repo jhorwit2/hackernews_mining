@@ -12,7 +12,7 @@ module.exports = {
         title: Seq.STRING
     },
     options:{
-        tableName: 'Threads',
+        tableName: 'threads',
         timestamps: true
     }
 };
