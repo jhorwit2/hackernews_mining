@@ -9,7 +9,7 @@ var orm = require('../lib/database'),
 //Creating our module
 module.exports = {
     model:{
-        text: Seq.STRING
+        title: Seq.STRING
     },
     options:{
         tableName: 'Threads',
@@ -20,7 +20,7 @@ module.exports = {
 // // Attach an asynchronous callback to read the data at our posts reference
 module.exports.create = function (title, callback) {
     orm.model('thread').create({
-        text: title
+        title: title
     }).success(function (thread) {
         logger.info('created thread', thread.text);
         return callback();
