@@ -5,24 +5,28 @@ var firebase = require('../lib/firebase'),
     threadRef = firebase.thread,
     async = require('async'),
     logger = require('../lib/logger'),
-    Thread = require('../models/thread');
+    Thread = require('../models/thread'),
+    _ = require('lodash');
 
 module.exports.start = function () {
-    topRef.on('value', function (snapshot) {
-        var top100 = snapshot.val();
-        async.each(top100, getThread, finished);
-    }, error);
+    topRef.on('value', handleThreads, error);
+};
+
+var handleThreads = function (snapshot) {
+    var top100 = snapshot.val();
+    async.each(top100, getThread, finished);
 };
 
 var getThread = function (id, callback) {
-    threadRef.child(id).once('value', function (snapshot) {
-        // Clear the callbacks for threadRef
-        threadRef.off();
+    threadRef.child(id).once('value', _.bind(processThread, {}, callback));
+};
 
+var processThread = function (callback, snapshot) {
+    // Clear the callbacks for threadRef
+    threadRef.off();
 
-        var title = snapshot.val().title;
-        Thread.create(title, callback);
-    });
+    var title = snapshot.val().title;
+    Thread.create(title, callback);
 };
 
 var error = function (error) {
@@ -35,4 +39,11 @@ var finished = function (error) {
     } else {
         logger.info('Successfully updated output.txt');
     }
+};
+
+module.testExports = {
+    handleThreads: handleThreads,
+    processThread: processThread,
+    error: error,
+    finished: finished
 };
