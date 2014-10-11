@@ -35,7 +35,7 @@ CREATE TABLE threads
 
 CREATE TABLE thread_rank
 (
-  "id" integer NOT NULL,
+  "id" serial NOT NULL,
   "threadId" integer NOT NULL,
   "createdAt" date,
   "updatedAt" date,
