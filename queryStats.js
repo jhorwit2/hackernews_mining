@@ -13,15 +13,15 @@ var client = new pg.Client(conString);
             return console.error('could not connect to postgres', err);
         }
         async.parallel([
-            query('SELECT count(*) from threads'),
-            query('SELECT count(*) from thread_rank')
+            query('SELECT count(*) from threads', 'Thread Count:'),
+            query('SELECT count(*) from thread_rank', 'Thread Rank Count:')
             ], function () {
                 client.end();
             });
 });
 
 
-var query = function (queryString) {
+var query = function (queryString, title) {
     return function query(callback) {
         client.query(queryString, function(err, result) {
             if(err) {
