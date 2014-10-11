@@ -28,7 +28,7 @@ var query = function (queryString, title) {
                 console.error('error running query', err);
                 return callback(err);
             }
-            console.log(result.rows[0].count);
+            console.log(title, result.rows[0].count);
             return callback();
         });
     };
