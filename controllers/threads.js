@@ -14,19 +14,21 @@ module.exports.start = function () {
 
 var handleThreads = function (snapshot) {
     var top100 = snapshot.val();
-    async.each(top100, getThread, finished);
+
+    async.each(top100, function (id, callback) {
+        var rank = top100.indexOf(id),
+            func =  _.bind(processThread, {}, callback, rank);
+
+        threadRef.child(id).once('value', func);
+    }, finished);
 };
 
-var getThread = function (id, callback) {
-    threadRef.child(id).once('value', _.bind(processThread, {}, callback));
-};
-
-var processThread = function (callback, snapshot) {
+var processThread = function (callback, rank, snapshot) {
     // Clear the callbacks for threadRef
     threadRef.off();
 
     var title = snapshot.val().title;
-    Thread.create(title, callback);
+    Thread.create(title, rank, callback);
 };
 
 var error = function (error) {
@@ -39,11 +41,4 @@ var finished = function (error) {
     } else {
         logger.info('Successfully updated output.txt');
     }
-};
-
-module.testExports = {
-    handleThreads: handleThreads,
-    processThread: processThread,
-    error: error,
-    finished: finished
 };

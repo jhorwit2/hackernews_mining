@@ -4,7 +4,9 @@
 //Getting the orm instance
 var orm = require('../lib/database'),
     Seq = orm.Sequelize(),
-    logger = require('../lib/logger');
+    logger = require('../lib/logger'),
+    async = require('async'),
+    _ = require('lodash');
 
 //Creating our module
 module.exports = {
@@ -18,14 +20,41 @@ module.exports = {
 };
 
 // // Attach an asynchronous callback to read the data at our posts reference
-module.exports.create = function (title, callback) {
-    orm.model('thread').create({
-        title: title
+module.exports.create = function (title, rank, callback) {
+    orm.model('thread').find({
+        where: {
+            title:title,
+            createdAt: new Date()
+        }
     }).success(function (thread) {
-        logger.info('created thread', thread.text);
-        return callback();
-    }).error(function (error) {
-        logger.error('An error occured while creating thread', error);
-        return callback(error);
+        async.waterfall([
+            createThread(thread, title),
+            createThreadRank(rank)
+            ], callback);
     });
+};
+
+var createThread = function (thread, title) {
+    return function createThread(callback) {
+        // The thread already exists so don't create it.
+        if (thread) {
+            console.log('found');
+            return callback(null, thread.id);
+        }
+
+        orm.model('thread').create({
+            title: title
+        }).success(function (thread) {
+            return callback(null, thread.id);
+        }).error(function (error) {
+            logger.error('An error occured while creating thread', error);
+            return callback(error);
+        });
+    };
+};
+
+var createThreadRank = function (rank) {
+    return function createThreadRank (threadId, callback) {
+        callback();
+    };
 };

@@ -32,6 +32,19 @@ CREATE TABLE threads
      "createdAt" date,
      CONSTRAINT "threads_pkey" PRIMARY KEY (id)
 )
+
+CREATE TABLE thread_rank
+(
+  "id" integer NOT NULL,
+  "threadId" integer NOT NULL,
+  "createdAt" date,
+  "updatedAt" date,
+  "rank" integer,
+  CONSTRAINT thread_rank_pkey PRIMARY KEY (id),
+  CONSTRAINT thread_rank_threadId_fkey FOREIGN KEY ("threadId")
+      REFERENCES "threads" ("id") MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
 ```
 
 Installation
