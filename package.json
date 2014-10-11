@@ -28,6 +28,9 @@
     "grunt-mocha-cli": "^1.9.0",
     "grunt-nsp-shrinkwrap": "0.0.3",
     "grunt-shell": "^1.0.1",
-    "mocha": "^1.18.0"
-  }
+    "jshint": "^2.5.6",
+    "mocha": "^1.18.0",
+    "precommit-hook": "^1.0.7"
+  },
+  "precommit": ["test"]
 }
