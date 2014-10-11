@@ -2,7 +2,7 @@
 [![Travis CI](https://travis-ci.org/jhorwit2/hackernews_mining.svg)](https://travis-ci.org/jhorwit2/hackernews_mining)
 [![Coverage Status](https://img.shields.io/coveralls/jhorwit2/hackernews_mining.svg)](https://coveralls.io/r/jhorwit2/hackernews_mining)
 
-hackernews_mining
+Mining Hacker News Top 100
 =================
 
 This application is used in conjunction with the new [Hacker News API](https://github.com/HackerNews/API) so that you can
@@ -11,7 +11,8 @@ mine the top 100 threads as they update to analyze at a later date.
 My plan is to use this application to mine data and create an open-source web application that performs
 text analysis on the data and shows useful trends related the top 100 threads over time in real-time.
 
-<b>Note - this application is not yet stable as the schema and logic is changing.
+<b>Note - This application is stable and any major updates will come via version tags. Major updates include logic
+for storing the data and the schema structure.</b>
 
 Database Setup
 =================
