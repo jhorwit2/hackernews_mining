@@ -1,15 +1,15 @@
 {
   "name": "hackernews",
   "version": "1.0.0",
-  "description": "hacker news mining",
+  "description": "Application that mines the top 100 threads of hacker news constantly.",
   "main": "app.js",
   "scripts": {
     "test": "grunt test",
     "hint": "grunt hint",
     "start": "node app.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Joshua Horwitz",
+  "license": "MIT",
   "dependencies": {
     "async": "^0.9.0",
     "firebase": "^1.1.0",
