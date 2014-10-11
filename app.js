@@ -15,5 +15,5 @@ var app = require('./controllers/threads'),
         } else {
             app.start();
         }
-    })
+    });
 }());
