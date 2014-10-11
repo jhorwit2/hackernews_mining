@@ -2,9 +2,8 @@
 
 var pg = require('pg').native,
     async = require('async'),
-    config = require('./config/config').database,
-    logger = require('./lib/logger');
-
+    config = require('./config/config').database;
+    
 var conString = 'postgres://' + config.username + ':' + config.password +
     '@' + config.options.host + '/' + config.database;
 
@@ -30,10 +29,10 @@ function query(queryString, title, key) {
     return function query(callback) {
         client.query(queryString, function(err, result) {
             if(err) {
-                logger.error('error running query', err);
+                console.error('error running query', err);
                 return callback(err);
             }
-            logger.log(title, result.rows[0][key]);
+            console.log(title, result.rows[0][key]);
             return callback();
         });
     };
