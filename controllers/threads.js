@@ -16,7 +16,7 @@ var handleThreads = function (snapshot) {
     var top100 = snapshot.val();
 
     async.each(top100, function (id, callback) {
-        var rank = top100.indexOf(id),
+        var rank = top100.indexOf(id) + 1;
             func =  _.bind(processThread, {}, callback, rank);
 
         threadRef.child(id).once('value', func);

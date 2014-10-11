@@ -38,7 +38,6 @@ var createThread = function (thread, title) {
     return function createThread(callback) {
         // The thread already exists so don't create it.
         if (thread) {
-            console.log('found');
             return callback(null, thread.id);
         }
 
@@ -55,6 +54,14 @@ var createThread = function (thread, title) {
 
 var createThreadRank = function (rank) {
     return function createThreadRank (threadId, callback) {
-        callback();
+        orm.model('threadRank').create({
+            threadId: threadId,
+            rank: rank
+        }).success(function (threadRank) {
+            return callback(null);
+        }).error(function (error) {
+            logger.error('An error occured while creating thread rank', error);
+            return callback(error);
+        });
     };
 };
