@@ -9,7 +9,8 @@ module.exports = function (grunt) {
     });
 
     // Register group tasks
-    grunt.registerTask('test', [ 'jshint', 'shell', 'nsp', 'mochacli' ]);
+    grunt.registerTask('hint', ['jshint']);
+    grunt.registerTask('test', ['jshint', 'shell', 'nsp', 'mochacli']);
     grunt.registerTask('mocha', ['mochacli']);
 
 };

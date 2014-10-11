@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "grunt test",
+    "hint": "grunt hint",
     "start": "node app.js"
   },
   "author": "",
@@ -32,5 +33,5 @@
     "mocha": "^1.18.0",
     "precommit-hook": "^1.0.7"
   },
-  "precommit": ["test"]
+  "precommit": ["hint"]
 }
