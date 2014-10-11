@@ -32,7 +32,7 @@ CREATE TABLE threads
      "updatedAt" date,
      "createdAt" date,
      CONSTRAINT "threads_pkey" PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE thread_rank
 (
@@ -45,7 +45,7 @@ CREATE TABLE thread_rank
   CONSTRAINT thread_rank_threadId_fkey FOREIGN KEY ("threadId")
       REFERENCES "threads" ("id") MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
-)
+);
 ```
 
 Installation
@@ -74,4 +74,16 @@ forever start app.js
 or
 
 node app.js
+```
+
+### Gathering quick statistics
+
+There is a file in the root directory called queryStats.js, which will take the configuration settings from
+your configuration file in the config folder and run canned queries. To add a new query, simply add the following
+to the queryList object.
+
+```js
+query('<query string>', '<title>'),
+
+// would print: '<title> <query results>'
 ```
