@@ -52,6 +52,10 @@ var createThread = function (thread, title) {
     };
 };
 
+/*
+    I think what I should do is check if the current rank is different than the last
+    saved rank. If it is then update, if it's the same then ignore. 
+*/
 var createThreadRank = function (rank) {
     return function createThreadRank (threadId, callback) {
         orm.model('threadRank').create({
