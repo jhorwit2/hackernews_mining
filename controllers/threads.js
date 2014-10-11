@@ -38,7 +38,5 @@ var error = function (error) {
 var finished = function (error) {
     if (error) {
         logger.error('Error:', error);
-    } else {
-        logger.info('Successfully updated output.txt');
     }
 };

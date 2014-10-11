@@ -5,6 +5,7 @@
 var orm = require('../lib/database'),
     Seq = orm.Sequelize(),
     logger = require('../lib/logger'),
+    threadRank = require('./threadRank'),
     async = require('async'),
     _ = require('lodash');
 
@@ -29,7 +30,7 @@ module.exports.create = function (title, rank, callback) {
     }).success(function (thread) {
         async.waterfall([
             createThread(thread, title),
-            createThreadRank(rank)
+            threadRank.create(rank)
             ], callback);
     });
 };
@@ -47,24 +48,6 @@ var createThread = function (thread, title) {
             return callback(null, thread.id);
         }).error(function (error) {
             logger.error('An error occured while creating thread', error);
-            return callback(error);
-        });
-    };
-};
-
-/*
-    I think what I should do is check if the current rank is different than the last
-    saved rank. If it is then update, if it's the same then ignore. 
-*/
-var createThreadRank = function (rank) {
-    return function createThreadRank (threadId, callback) {
-        orm.model('threadRank').create({
-            threadId: threadId,
-            rank: rank
-        }).success(function (threadRank) {
-            return callback(null);
-        }).error(function (error) {
-            logger.error('An error occured while creating thread rank', error);
             return callback(error);
         });
     };
