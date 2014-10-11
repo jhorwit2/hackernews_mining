@@ -1,9 +1,9 @@
 'use strict';
 
-var pg = require('pg').native,
+var pg = require('pg'),
     async = require('async'),
     config = require('./config/config').database;
-    
+
 var conString = 'postgres://' + config.username + ':' + config.password +
     '@' + config.options.host + '/' + config.database;
 
