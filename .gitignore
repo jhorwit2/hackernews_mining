@@ -1,5 +1,4 @@
 node_modules/*
-output.txt
 npm-debug.log
 audit.log
 npm-shrinkwrap.json
