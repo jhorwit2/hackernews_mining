@@ -11,8 +11,7 @@ mine the top 100 threads as they update to analyze at a later date.
 My plan is to use this application to mine data and create an open-source web application that performs
 text analysis on the data and shows useful trends related the top 100 threads over time in real-time.
 
-<b>Note - This application is stable and any major updates will come via version tags. Major updates include logic
-for storing the data and the schema structure.</b>
+<b>Note - This application is not yet stable.</b>
 
 Database Setup
 =================
