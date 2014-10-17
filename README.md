@@ -1,6 +1,11 @@
 [![David DM](https://david-dm.org/jhorwit2/hackernews_mining.png)](http://david-dm.org)
 [![Travis CI](https://travis-ci.org/jhorwit2/hackernews_mining.svg)](https://travis-ci.org/jhorwit2/hackernews_mining)
-[![Coverage Status](https://img.shields.io/coveralls/jhorwit2/hackernews_mining.svg)](https://coveralls.io/r/jhorwit2/hackernews_mining)
+[![Stories in Ready](https://badge.waffle.io/jhorwit2/hackernews_mining.svg?label=ready&title=Ready)](http://waffle.io/jhorwit2/hackernews_mining) 
+[![Stories in Ready](https://badge.waffle.io/jhorwit2/hackernews_mining.svg?label=in progress&title=In Progress)](http://waffle.io/jhorwit2/hackernews_mining) 
+
+<!--[![Coverage Status](https://img.shields.io/coveralls/jhorwit2/hackernews_mining.svg)](https://coveralls.io/r/jhorwit2/hackernews_mining) -->  
+
+
 
 Mining Hacker News Top 100
 =================
